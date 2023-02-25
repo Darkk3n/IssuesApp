@@ -1,25 +1,30 @@
-import { useQuery } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query";
+import { GitHubApi } from '../../api/GitHubApi';
+import { Label } from "../interfaces/Label";
 
 export const LabelPicker = () => {
-  
-  const getLabels = async()=>{
-    const res = await fetch('https://api.github.com/repos/facebook/react/labels');
-    const data = await res.json();
-    console.log(data)
+
+  const getLabels = async (): Promise<Label[]> => {
+    const { data } = await GitHubApi.get<Label[]>('/labels');
     return data;
   }
 
-  const labelsQuery=useQuery(['labels'], getLabels)
+  const labelsQuery = useQuery(
+    ['labels'],
+    getLabels,
+    {
+      refetchOnWindowFocus: false
+    })
 
   return (
     <>
-        <span 
-            className="badge rounded-pill m-1 label-picker"
-            style={{ border: `1px solid #ffccd3`, color: '#ffccd3' }}
-        >
-            Primary
-        </span>
-        
+      <span
+        className="badge rounded-pill m-1 label-picker"
+        style={{ border: `1px solid #ffccd3`, color: '#ffccd3' }}
+      >
+        Primary
+      </span>
+
     </>
   )
 }
