@@ -15,7 +15,26 @@ export const useLabels = () => {
       getLabels,
       {
          refetchOnWindowFocus: false,
-         staleTime: 1000 * 60 * 60
+         staleTime: 1000 * 60 * 60,
+         placeholderData: [
+            {
+               id: 1757816973,
+               node_id: "MDU6TGFiZWwxNzU3ODE2OTcz",
+               url: "https://api.github.com/repos/facebook/react/labels/dependencies",
+               name: "dependencies",
+               color: "0366d6",
+               default: false
+            },
+            {
+               id: 2281766624,
+               node_id: "MDU6TGFiZWwyMjgxNzY2NjI0",
+               url: "https://api.github.com/repos/facebook/react/labels/Component:%20Scheduling%20Profiler",
+               name: "Component: Scheduling Profiler",
+               color: "1dc3d6",
+               default: false
+            }
+         ],
+         initialData: []
       })
    return labelsQuery;
 }
